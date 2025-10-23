@@ -32,19 +32,26 @@ exports.getGerenciarProjetos = async (req, res) => {
 exports.postCriarProjeto = async (req, res) => {
   const { nome, resumo, link_externo, palavras_chave_ids } = req.body;
   const alunoId = req.session.user.id;
-
+  const palavrasChaveIds = Array.isArray(palavras_chave_ids) 
+    ? palavras_chave_ids.map(id => parseInt(id, 10)) 
+    : [];
   try {
+    if (!link_externo || !link_externo.startsWith('http')) {
+      req.flash('error', 'Link externo deve ser uma URL válida (ex.: https://github.com/...).');
+      return res.redirect('/aluno/projetos');
+    }
     await Projeto.create({
       nome,
       resumo,
       link_externo,
       desenvolvedores_ids: [alunoId],
-      palavras_chave_ids: palavras_chave_ids,
+      palavras_chave_ids: palavrasChaveIds,
     });
-
+    req.flash('success', 'Projeto cadastrado com sucesso!');
     res.redirect('/aluno/projetos');
   } catch (error) {
     console.error('Erro ao criar projeto:', error);
+    req.flash('error', 'Erro ao cadastrar projeto. Verifique os dados e tente novamente.');
     res.redirect('/aluno/projetos');
   }
 };

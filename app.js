@@ -3,6 +3,8 @@ const { engine } = require('express-handlebars');
 const session = require('express-session');
 const FileStore = require('session-file-store')(session);
 const path = require('path');
+const multer = require('multer');
+const upload = multer();
 
 // --- BANCOS DE DADOS ---
 
@@ -67,12 +69,15 @@ const authRoutes = require('./src/routes/authRoutes');
 const alunoRoutes = require('./src/routes/alunoRoutes');
 const adminRoutes = require('./src/routes/adminRoutes');
 const publicRoutes = require('./src/routes/publicRoutes')
+const alunoController = require('./src/controllers/alunoController');
 
 app.get('/', (req, res) => {
     res.render('public/home', { 
         pageTitle: 'Portfólio de Engenharia de Software'
     });
 });
+
+app.post('/aluno/projetos', upload.none(), alunoController.postCriarProjeto);
 
 app.use(authRoutes);
 app.use(alunoRoutes);

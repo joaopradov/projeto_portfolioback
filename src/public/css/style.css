@@ -689,10 +689,6 @@ video {
   height: 6rem;
 }
 
-.h-32 {
-  height: 8rem;
-}
-
 .h-4 {
   height: 1rem;
 }
@@ -703,10 +699,6 @@ video {
 
 .max-h-40 {
   max-height: 10rem;
-}
-
-.w-32 {
-  width: 8rem;
 }
 
 .w-4 {
@@ -727,10 +719,6 @@ video {
 
 .max-w-md {
   max-width: 28rem;
-}
-
-.flex-shrink-0 {
-  flex-shrink: 0;
 }
 
 .flex-grow {
