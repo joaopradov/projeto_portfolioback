@@ -1,0 +1,29 @@
+{{!-- src/views/public/relatorioConhecimentos.hbs --}}
+
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold text-center text-gray-800 mb-2">Relatório de Conhecimentos</h1>
+    <p class="text-center text-lg text-gray-600 mb-10">
+        Proporção de alunos que dominam cada tecnologia cadastrada no sistema.
+    </p>
+
+    <div class="bg-white p-6 rounded-lg shadow-md max-w-4xl mx-auto">
+        <div class="space-y-6">
+            {{#each relatorio}}
+            <div>
+                <div class="flex justify-between items-center mb-1">
+                    <h2 class="text-xl font-bold text-gray-800">{{this.nome}}</h2>
+                    <span class="text-sm font-semibold text-gray-700">{{this.alunosComConhecimento}} de {{this.totalAlunos}} alunos ({{this.porcentagem}}%)</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-4">
+                    <div class="bg-blue-500 h-4 rounded-full" style="width: {{this.porcentagem}}%"></div>
+                </div>
+                {{#if this.descricao}}
+                <p class="text-sm text-gray-500 mt-1">{{this.descricao}}</p>
+                {{/if}}
+            </div>
+            {{else}}
+            <p class="text-center text-gray-500">Nenhum conhecimento cadastrado ou nenhum aluno no sistema para gerar o relatório.</p>
+            {{/each}}
+        </div>
+    </div>
+</div>

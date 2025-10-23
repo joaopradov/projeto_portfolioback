@@ -1,0 +1,60 @@
+<div class="container mx-auto p-4 md:p-8">
+    <h1 class="text-3xl font-bold text-gray-800 mb-6">Meus Conhecimentos</h1>
+
+    <div class="bg-white p-6 rounded-lg shadow-md mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Adicionar ou Atualizar Conhecimento no seu Perfil</h2>
+        <form action="/aluno/conhecimentos" method="POST">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <div>
+                    <label for="conhecimento_id" class="block text-sm font-medium text-gray-700">Conhecimento</label>
+                    <select name="conhecimento_id" id="conhecimento_id" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" required>
+                        <option value="">Selecione um conhecimento...</option>
+                        {{#each todosConhecimentos}}
+                            <option value="{{this.id}}">{{this.nome}}</option>
+                        {{/each}}
+                    </select>
+                    <p class="text-xs text-gray-500 mt-1">Selecione um conhecimento.</p>
+                </div>
+
+                <div>
+                    <label for="nivel" class="block text-sm font-medium text-gray-700">Nível de Proficiência (0 a 10)</label>
+                    <input type="number" name="nivel" id="nivel" min="0" max="10" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm" required>
+                    <p class="text-xs text-gray-500 mt-1">Selecione o nível e clique em adicionar para salvar.</p>
+                </div>
+            </div>
+            <div class="mt-6">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+                    Adicionar/Atualizar Conhecimento
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold mb-4">Seus Conhecimentos Adicionados</h2>
+        <div class="space-y-4">
+            {{#each conhecimentosDoAluno}}
+            <div class="border-b pb-4 flex justify-between items-center">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-800">{{this.conhecimento_nome}}</h3>
+                    <p class="text-gray-600">Nível: {{this.nivel}} de 10</p>
+                </div>
+                <div class="flex space-x-4">
+                    <button type="button" 
+                            class="text-blue-600 hover:text-blue-800 font-medium"
+                            onclick="document.getElementById('conhecimento_id').value = '{{this.conhecimento_id}}'; document.getElementById('nivel').value = '{{this.nivel}}';">
+                        Editar
+                    </button>
+
+                    <form action="/aluno/conhecimentos/delete/{{this.conhecimento_id}}" method="POST" ...>
+                        <button type="submit" class="text-red-600 hover:text-red-900">Remover</button>
+                    </form>
+                </div>
+            </div>
+            {{else}}
+            <p class="text-gray-500">Você ainda não adicionou nenhum conhecimento ao seu perfil.</p>
+            {{/each}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <h1 class="text-3xl font-bold text-gray-800">Painel de Administração</h1>
+    <p class="mt-2 text-gray-600">Bem-vindo, {{user.nome}}. Use as ferramentas abaixo para gerenciar o sistema.</p>
+
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-blue-100 p-4 rounded-lg shadow">
+            <h2 class="text-xl font-bold text-blue-800">Gerenciar Alunos</h2>
+            <p class="mt-2 text-blue-700">Cadastrar, editar e remover alunos do sistema.</p>
+            <a href="/admin/alunos" class="mt-4 inline-block bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Ir para Alunos</a>
+        </div>
+
+        <div class="bg-green-100 p-4 rounded-lg shadow">
+            <h2 class="text-xl font-bold text-green-800">Gerenciar Conhecimentos</h2>
+            <p class="mt-2 text-green-700">Adicionar ou remover conhecimentos disponíveis para os alunos.</p>
+            <a href="/admin/conhecimentos" class="mt-4 inline-block bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">Ir para Conhecimentos</a>
+        </div>
+
+        <div class="bg-yellow-100 p-4 rounded-lg shadow">
+            <h2 class="text-xl font-bold text-yellow-800">Gerenciar Palavras-chave</h2>
+            <p class="mt-2 text-yellow-700">Controlar as palavras-chave para os projetos.</p>
+            <a href="/admin/palavras-chave" class="mt-4 inline-block bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600">Ir para Palavras-chave</a>
+        </div>
+    </div>
+</div>

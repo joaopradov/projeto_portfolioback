@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{pageTitle}} - Portfólio ES</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-white shadow-md">
+    <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <a href="/" class="text-lg font-bold text-gray-700">
+            Portfólio Eng. de Software
+        </a>
+        
+        <a href="/relatorio" class="text-sm text-gray-600 hover:text-blue-500">Relatório</a>
+
+        <div>
+            {{#if session.isLoggedIn}}
+                <span class="text-gray-800 mr-4">Olá, {{session.user.nome}}!</span>
+                <a href="/logout" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Sair
+                </a>
+            {{else}}
+                <a href="/login" class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded transition duration-300">
+                    Fazer Login
+                </a>
+            {{/if}}
+        </div>
+    </nav>
+</header>
+
+    <main class="container mx-auto px-6 py-8">
+        {{{body}}}
+    </main>
+
+</body>
+</html>

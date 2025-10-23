@@ -1,0 +1,28 @@
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <h1 class="text-3xl font-bold text-gray-800">Bem-vindo ao seu painel, {{user.nome}}!</h1>
+    <p class="mt-2 text-gray-600">Este é o seu espaço pessoal para gerenciar seus projetos e conhecimentos.</p>
+
+    <div class="mt-6 border-t pt-4">
+        <h2 class="text-xl font-semibold">Suas Informações:</h2>
+        <ul class="mt-2 list-disc list-inside">
+            <li><strong>ID:</strong> {{user.id}}</li>
+            <li><strong>Nome:</strong> {{user.nome_completo}}</li>
+            <li><strong>Email:</strong> {{user.email}}</li>
+            <li><strong>Nível de Acesso:</strong> {{user.role}}</li>
+        </ul>
+    </div>
+</div>
+
+<div class="mt-6 border-t pt-4">
+    <h2 class="text-xl font-semibold">Ações:</h2>
+    <div class="mt-4 flex flex-col md:flex-row gap-4">
+        <a href="/aluno/projetos" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+            Gerenciar Meus Projetos
+        </a>
+
+        <a href="/aluno/conhecimentos" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+            Gerenciar Meus Conhecimentos
+        </a>
+    </div>
+</div>
+

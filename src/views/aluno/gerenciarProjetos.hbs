@@ -1,0 +1,63 @@
+<h1 class="text-3xl font-bold text-gray-800 mb-6">Meus Projetos</h1>
+
+<div class="bg-white p-6 rounded-lg shadow-md mb-8">
+    <h2 class="text-2xl font-semibold mb-4">Cadastrar Novo Projeto</h2>
+
+    <form action="/aluno/projetos" method="POST" enctype="multipart/form-data">
+        <div class="space-y-4">
+            <div>
+                <label for="nome" class="block text-sm font-medium text-gray-700">Nome do Projeto</label>
+                <input type="text" name="nome" id="nome" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+            </div>
+
+            <div>
+                <label for="resumo" class="block text-sm font-medium text-gray-700">Resumo</label>
+                <textarea name="resumo" id="resumo" rows="3" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required></textarea>
+            </div>
+
+            <div>
+                <label for="link_externo" class="block text-sm font-medium text-gray-700">Link Externo (GitHub, etc.)</label>
+                <input type="url" name="link_externo" id="link_externo" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Palavras-chave</label>
+                <p class="text-xs text-gray-500 mb-2">Selecione uma ou mais palavras-chave para este projeto.</p>
+                <div class="max-h-40 overflow-y-auto border rounded-md p-2 space-y-1">
+                    {{#each todasPalavrasChave}}
+                    <div class="flex items-center">
+                        <input type="checkbox" name="palavras_chave_ids" id="palavra-{{this.id}}" value="{{this.id}}" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                        <label for="palavra-{{this.id}}" class="ml-2 block text-sm text-gray-900">{{this.nome}}</label>
+                    </div>
+                    {{else}}
+                    <p class="text-sm text-gray-500">Nenhuma palavra-chave cadastrada pelo administrador.</p>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-6">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+                Cadastrar Projeto
+            </button>
+        </div>
+    </form>
+</div>
+
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-2xl font-semibold mb-4">Projetos Cadastrados</h2>
+    <div class="space-y-6">
+        {{#each projetos}}
+        <div class="border-b pb-4 flex items-start gap-4">
+
+            <div class="flex-grow">
+                <h3 class="text-xl font-bold text-gray-800">{{this.nome}}</h3>
+                <p class="mt-1 text-gray-600">{{this.resumo}}</p>
+                <a href="{{this.link_externo}}" target="_blank" class="text-blue-500 hover:text-blue-700 inline-block mt-2">Ver Projeto &rarr;</a>
+            </div>
+        </div>
+        {{else}}
+        <p class="text-gray-500">Você ainda não cadastrou nenhum projeto.</p>
+        {{/each}}
+    </div>
+</div>
